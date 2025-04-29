@@ -1,6 +1,6 @@
 # Natural Language to SQL Query Tool (using Groq API)
 
-This Python script allows you to query a SQLite database using natural language questions. It utilizes the Groq API (with the Llama 3.3 70b model by default) to translate your questions into SQL queries, executes them against the specified database, and displays the results.
+This Python script allows you to query a SQLite database using natural language questions. It utilizes the Groq API to translate your questions into SQL queries, executes them against the specified database, and displays the results.
 
 ## Features
 
@@ -22,8 +22,8 @@ This Python script allows you to query a SQLite database using natural language 
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repo-url>
-    cd <your-repo-name>
+    git clone <your-repo-url> # Replace with your actual repo URL if applicable
+    cd <your-repo-name>      # Replace with the cloned directory name
     ```
 
 2.  **Set up a virtual environment (Recommended):**
@@ -41,6 +41,10 @@ This Python script allows you to query a SQLite database using natural language 
     It's strongly recommended to set your API key as an environment variable:
     ```bash
     export GROQ_API_KEY='your_actual_groq_api_key'
+    # On Windows Command Prompt:
+    # set GROQ_API_KEY=your_actual_groq_api_key
+    # On Windows PowerShell:
+    # $env:GROQ_API_KEY='your_actual_groq_api_key'
     ```
     Alternatively, you can replace the placeholder `"Enter Your API Key Here"` directly in the `nl_to_sql_groq.py` script, but this is less secure.
 
@@ -52,6 +56,3 @@ Run the script from your terminal, providing the path to your SQLite database fi
 
 ```bash
 python nl_to_sql_groq.py path/to/your/database.db
-The script will:Connect to the database.Identify the first table and its columns.Prompt you to enter your query in natural language.Send the query and schema information to the Groq API.Display the generated SQL query.Execute the SQL query.Print the results.Command-Line Query Mode:You can pass your natural language query directly using the -q or --query flag:python nl_to_sql_groq.py path/to/your/database.db -q "Show me all customers with more than 5 orders"
-python nl_to_sql_groq.py employees.sqlite --query "What are the names and salaries of employees in the Engineering department?"
-LimitationsSingle Table: The script currently only automatically detects and uses the first table found in the database schema. It does not support queries involving multiple tables (JOINs) unless the LLM infers it correctly without explicit multi-table schema info.SQL Generation Accuracy: The accuracy of the generated SQL depends on the LLM's understanding of the natural language query and the provided schema. Complex queries might not be translated correctly. Always review the generated SQL before relying on its results, especially for non-SELECT operations.Security: Executing LLM-generated SQL queries can be risky, especially if the database contains sensitive information or the LLM generates unintended DML/DDL statements (like UPDATE, DELETE, DROP). The script includes a basic warning for non-SELECT queries, but use with caution.Future EnhancementsSupport for multiple tables (passing multiple schemas or using table names in the query).User selection for target table if multiple tables exist.More robust SQL validation before execution.Option for user confirmation before executing non-SELECT queries.Integration with libraries like tabulate for better result formatting.
