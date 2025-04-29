@@ -1,0 +1,3 @@
+groq>=0.9.0,<1.0.0
+# sqlite3 is part of the Python standard library, no need to list it.
+# argparse is part of the Python standard library, no need to list it.
